@@ -1,10 +1,9 @@
 from PPlay.window import *
 from PPlay.gameimage import *
 from save_name import name
-import game
 
 
-def winner(level, points):
+def winner_screen(level, points):
     janela = Window(500,720)
     janela.set_title("Space Lovers")
     fundo = GameImage("images/winner.png")
@@ -34,7 +33,7 @@ def winner(level, points):
             click = 0
             if level != 3:
                 if mouse.is_over_object(buttons[0]):
-                    return game.game(level+1, points)
+                    return level+1
                 if mouse.is_over_object(buttons[1]):
                     return 0
                 if mouse.is_over_object(buttons[2]):

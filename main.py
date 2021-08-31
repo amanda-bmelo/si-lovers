@@ -4,12 +4,10 @@ from game import game
 from gameover import gameover
 from dificuldade import dificuldade
 from ranking import ranking
-from winner import winner
 
 janela = Window(500,720)
 janela.set_title("Space Lovers")
 
-global STATE
 STATE = 0
 
 while True:

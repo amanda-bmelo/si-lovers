@@ -3,7 +3,7 @@ from PPlay.gameimage import *
 from PPlay.sprite import *
 from PPlay.keyboard import *
 from random import randint
-from winner import winner
+from winner import winner_screen
 from aliens import aliens, alien_heart, sleep, lose
 from gameover import gameover
 
@@ -26,14 +26,15 @@ def game(level, points=0, nome=''):
 
     all_hearts = []
     time, time_player = 2, 0
-    lives = 5
+    lives = 3
     loser = False
     blink = False
 
     # DIFICULDADE
-    if level == 1: a = 1
-    elif level == 2: a = 1.5
-    else: a = 2
+    if level == 0: return 0
+    elif level == 1: a = 0.7
+    elif level == 2: a = 1
+    else: a = 1.5
 
     # ALIENS
     all_aliens = aliens()
@@ -89,7 +90,8 @@ def game(level, points=0, nome=''):
                 if not all_aliens[-1]:
                     all_aliens.pop(-1)
                 if not all_aliens: 
-                    return winner(level, points)
+                    level = winner_screen(level, points)
+                    game(level, points)
 
                 slept = False
                 normal_heart = True
@@ -152,7 +154,8 @@ def game(level, points=0, nome=''):
         if lives == 0: 
             return gameover(points)
         elif not all_aliens: 
-            return winner(level, points)
+            level = winner_screen(level, points)
+            game(level, points)
 
 
         janela.draw_text(f"Pontos: {points}", 30, 20, size=30, color=(240,240,240), font_name="Computer_says_no")
